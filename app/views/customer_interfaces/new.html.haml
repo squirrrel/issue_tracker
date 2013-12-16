@@ -1,0 +1,16 @@
+-content_for :body do
+ %div
+  %h3 Describe your issue and submit to our engineers. We will provide you with an update within 24 hours
+  =form_for(@ticket, url: {:action => 'create'}) do |f|
+   = f.text_field(:customer_name, placeholder: 'Name...')
+   %br
+   = f.text_field(:customer_email, placeholder: 'Email address...')
+   %br
+   = f.text_field(:department, placeholder: 'Department')
+   %br
+   = f.text_field(:subject, placeholder: 'Subject')
+   %br
+   = f.text_field(:body, placeholder: 'Describe your enquiry here...')
+   %br
+   = submit_tag('Submit')
+  = notice

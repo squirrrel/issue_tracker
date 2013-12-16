@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  current_user_or_customer_name: MyString
+  body: MyText
+
+two:
+  current_user_or_customer_name: MyString
+  body: MyText
