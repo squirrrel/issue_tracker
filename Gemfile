@@ -38,6 +38,10 @@ end
 group :custom do
 	gem 'devise'
 	gem 'erb2haml'
+	gem 'rspec-rails', '2.14.0'
+	gem 'factory_girl'
+	gem 'capybara'
+	gem 'test-unit-rails'
 end	
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

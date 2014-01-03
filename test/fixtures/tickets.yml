@@ -7,11 +7,4 @@ one:
   department: MyString
   subject: MyString
   body: MyText
-
-two:
-  ref_number: MyString
-  customer_name: MyString
-  customer_email: MyString
-  department: MyString
-  subject: MyString
-  body: MyText
+  status: MyString

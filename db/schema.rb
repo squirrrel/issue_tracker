@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216133946) do
+ActiveRecord::Schema.define(version: 20131224122038) do
 
   create_table "comments", force: true do |t|
-    t.string   "current_user_or_customer_name"
-    t.text     "body"
+    t.string   "current_user_or_customer_name", null: false
+    t.text     "body",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ticket_id"
@@ -42,16 +42,16 @@ ActiveRecord::Schema.define(version: 20131216133946) do
   add_index "engineers", ["reset_password_token"], name: "index_engineers_on_reset_password_token", unique: true
 
   create_table "tickets", force: true do |t|
-    t.string   "ref_number"
-    t.string   "customer_name"
-    t.string   "customer_email"
-    t.string   "department"
-    t.string   "subject"
-    t.text     "body"
+    t.string   "ref_number",     null: false
+    t.string   "customer_name",  null: false
+    t.string   "customer_email", null: false
+    t.string   "department",     null: false
+    t.string   "subject",        null: false
+    t.text     "body",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "engineer_id"
-    t.string   "status"
+    t.string   "status",         null: false
   end
 
   add_index "tickets", ["engineer_id"], name: "index_tickets_on_engineer_id"
