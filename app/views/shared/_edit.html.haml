@@ -2,6 +2,5 @@
  =form_for @ticket, url: {:action => 'update'}, remote: true do |f|
   =f.text_area :comments, :value => "Leave your comment here...", size: '50x5'
   - if @ticket.editable == true 
-   =f.collection_select :engineer_id, Engineer.all, :id, :email, prompt: true
    =f.select(:status, get_status_array.map {|status| [ status, status ] })
   = submit_tag('Post')

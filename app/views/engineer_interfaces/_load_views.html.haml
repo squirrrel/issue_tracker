@@ -25,11 +25,4 @@
   = ticket.body
  %br 
  %div{ style: 'font-size: 13px;color:green;font-family: "Courier New", Courier, monospace'} 
-  - ticket.comments.each do |comment|
-   =comment.body
-   %br
-   %br
-   =comment.current_user_or_customer_name
-   %br
- #reply
- %br      
+ #reply      

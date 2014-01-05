@@ -72,7 +72,7 @@ class Ticket
   	end	
 
 	private
-
+	
 		def self.generate_random_number
 			(0...3).map{ rand(0...9) }.join 
 		end

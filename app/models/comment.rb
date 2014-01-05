@@ -3,7 +3,7 @@ class Comment
   field :current_user_or_customer_name, type: String
   field :body,                          type: String
   field :created_at,										type: Time, default: ->{ Time.now } 		
-  field :ticket_id											type: Integer
+  field :ticket_id,											type: Integer
 
 	def self.create_new ticket_id, permitted_params, author_name
 		create!(
