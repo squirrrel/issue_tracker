@@ -1,30 +1,45 @@
-class Ticket < ActiveRecord::Base
+class Ticket
+	include Mongoid::Document
+	include Mongoid::Attributes::Dynamic #this is for extra fields dynamically set
+	field :ref_number,				type: String
+  field :customer_name,			type: String
+  field :customer_email,		type: String
+  field :department,				type: String
+  field :subject, 					type: String
+  field :body, 							type: String
+  field :created_at,				type: Time, default: ->{ Time.now }
+  field :engineer_id,				type: Integer
+  field :status,						type: String
+  #field :special,						type: String
+  validates :customer_name, 	presence: true
+  validates :customer_email, 	presence: true
+  validates :department, 			presence: true
+  validates :subject, 				presence: true
+  validates :body,  					presence: true
+
 	attr_accessor :editable, :owner
-
-	belongs_to :engineer
-	has_many :comments
-
-	validates :body, presence: true
-	validates :customer_name, presence: true
-	validates :customer_email, presence: true
-	validates :department, presence: true
-	validates :subject, presence: true
-
 
 	def self.create_new permitted_params
 		unique_identifier = "#{generate_random_string}-#{generate_random_number}-#{generate_random_string}-" \
 								"#{generate_random_number}-#{generate_random_string}"
-		permitted_params[:ref_number] = unique_identifier 
-		permitted_params[:status] = :"Waiting for Staff Response"
-		create(permitted_params)
+		create!(
+			ref_number: unique_identifier,
+			customer_name: permitted_params[:customer_name],
+			customer_email: permitted_params[:customer_email],
+			department: permitted_params[:department],
+			subject: permitted_params[:subject],
+			body: permitted_params[:body],
+			status: 'Waiting for Staff Response',
+			#special: 'sss'
+		)
 	end	
 
 	def self.all_unassigned
-		where(status: :"Waiting for Staff Response")
+		where(status: 'Waiting for Staff Response')
 	end	
 
 	def self.fetch_matching_records status
-		where(status: status).order('created_at DESC') 
+		where(status: status).order_by([:created_at, :desc]) 
 	end	
 
 	def self.find_record id
@@ -32,13 +47,15 @@ class Ticket < ActiveRecord::Base
 	end	
 
 	def self.update_with id, ticket_updates, current_engineer_id
-	    status_for_update = 
-          if ticket_updates[:engineer_id] != current_engineer_id && ticket_updates[:status] == 'Waiting for Staff Response'
-            :'On Hold'
-          else
-            ticket_updates[:status]
-          end 
-		update(id, engineer_id: ticket_updates[:engineer_id], status: status_for_update) 
+    status_for_update = 
+      if ticket_updates[:engineer_id] != current_engineer_id && ticket_updates[:status] == 'Waiting for Staff Response'
+  	    'On Hold'
+      else
+        ticket_updates[:status]
+      end 
+		find(id).update_attributes(engineer_id: ticket_updates[:engineer_id], 
+																status: status_for_update) 
+
 	end	
 
   	def set_editable current_engineer

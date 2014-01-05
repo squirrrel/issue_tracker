@@ -18,7 +18,7 @@ class CustomerInterfacesController < ApplicationController
 
   def edit
   	@ticket = Ticket.find_record(params[:id])
-    @ticket.set_editable(nil)
+    @ticket.editable = true
     respond_to do |format|
       format.js {render 'shared/edit.js.erb'}
     end 
