@@ -42,6 +42,7 @@ group :custom do
 	gem 'factory_girl'
 	gem 'capybara'
 	gem 'test-unit-rails'
+	gem 'couchrest_model'
 end	
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

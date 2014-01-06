@@ -42,6 +42,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    couchrest (1.1.3)
+      mime-types (~> 1.15)
+      multi_json (~> 1.0)
+      rest-client (~> 1.6.1)
+    couchrest_model (2.0.1)
+      activemodel (>= 3.0)
+      couchrest (~> 1.1.3)
+      mime-types (>= 1.15)
+      tzinfo (>= 0.3.22)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -107,6 +116,8 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rr (1.1.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
@@ -183,6 +194,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  couchrest_model
   devise
   erb2haml
   factory_girl
